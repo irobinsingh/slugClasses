@@ -1,5 +1,8 @@
 {{extend 'layout.html'}}
 
+
+<div id="wrapper">
+<div class="indented">
 <h2>{{=T( request.args(0).replace('_',' ').capitalize() )}}</h2>
 <div id="web2py_user_form">
 {{
@@ -14,6 +17,9 @@ pass
 =form
 }}
 </div>
+</div>
+</div>
+</body>
 <script language="javascript"><!--
 jQuery("#web2py_user_form input:visible:enabled:first").focus();
 {{if request.args(0)=='register':}}
