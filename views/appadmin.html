@@ -8,7 +8,8 @@
     jQuery('table.sortable tbody tr:even').addClass('even');
 });
 //--></script>
-
+<div id="wrapper">
+<div class="indented">
 {{if request.function=='index':}}
 <h2>{{=T("Available Databases and Tables")}}</h2>
   {{if not databases:}}{{=T("No databases in this application")}}{{pass}}
@@ -266,3 +267,5 @@
   {{pass}}
 </div>
 {{pass}}
+</div>
+</div>

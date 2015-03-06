@@ -53,3 +53,45 @@ CREATE TABLE auth_cas(
     renew CHAR(1)
 );
 success!
+timestamp: 2015-03-03T22:41:37.116000
+CREATE TABLE course(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subject CHAR(512),
+    nbr CHAR(512),
+    title CHAR(512)
+);
+success!
+timestamp: 2015-03-04T00:27:39.271000
+CREATE TABLE professor(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(512),
+    last_name CHAR(512)
+);
+success!
+timestamp: 2015-03-04T14:49:22.146000
+CREATE TABLE revision(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_id INTEGER REFERENCES course (id) ON DELETE CASCADE,
+    professor_id INTEGER REFERENCES professor (id) ON DELETE CASCADE,
+    date_created TIMESTAMP,
+    body TEXT,
+    thumbsups INTEGER,
+    thumbsdowns INTEGER
+);
+success!
+timestamp: 2015-03-04T14:49:22.178000
+CREATE TABLE note(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_id INTEGER REFERENCES course (id) ON DELETE CASCADE,
+    date_created TIMESTAMP,
+    body TEXT,
+    thumbsups INTEGER,
+    thumbsdowns INTEGER
+);
+success!
+timestamp: 2015-03-05T23:29:12.095000
+CREATE TABLE subject(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!

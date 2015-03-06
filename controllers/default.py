@@ -20,7 +20,9 @@ def index():
     response.flash = T("Welcome to web2py!")
     return dict(message=T('Hello World'))
 
-
+def classes():
+    return dict()
+    
 def user():
     """
     exposes:
