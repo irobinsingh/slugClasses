@@ -22,6 +22,18 @@ def index():
 
 def classes():
     return dict()
+
+def professors():
+    form = SQLFORM.factory(Field('search'))
+    profs = ''
+    if form.process().accepted:
+        redirect(URL('default', 'professors', vars=dict(s=form.vars.search)))
+    
+    if request.vars.s != None:
+        profs = db(((db.professor.last_name).lower() == (request.vars.s).lower()) | ((db.professor.first_name).lower() == (request.vars.s).lower()) ).select(orderby=db.professor.last_name)
+        
+    return dict(form=form, profs=profs)
+    
     
 def user():
     """
