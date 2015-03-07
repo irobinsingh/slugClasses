@@ -23,6 +23,9 @@ def index():
 def classes():
     return dict()
 
+def contact():
+    return dict()
+
 def professors():
     form = SQLFORM.factory(Field('search'))
     profs = ''
