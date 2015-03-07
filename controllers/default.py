@@ -44,6 +44,12 @@ def classes():
 
 def contact():
     return dict()
+    
+def termsandconditions():
+    return dict()
+
+def announcements():
+    return dict()
 
 def new():
     courseform = SQLFORM(db.course)
