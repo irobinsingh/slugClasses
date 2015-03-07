@@ -39,5 +39,5 @@ subs = db().select(db.subject.ALL, orderby=db.subject.acronym)
 for s in subs:
     subjects.append(s.acronym)
 
-db.course.subject.requires = IS_IN_SET(subjects, zero=None)
+#db.course.subject.requires = IS_IN_SET(subjects, zero=None)
     

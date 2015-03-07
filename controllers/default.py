@@ -30,28 +30,40 @@ def classes():
             if(request.args(0) == 'search'):
                 redirect(URL('default', 'classes'))
         else:
-            redirect(URL('default', 'classes', args=['search'], vars=dict(course=form.vars.subject, number=form.vars.nbr)))
+            redirect(URL('default', 'classes', args=['search'], vars=dict(course=form.vars.subject, number=form.vars.number)))
+        
+    if request.args(0) == 'search' and request.vars.course != None and request.vars.number!= None:
+        subj = db(db.subject.acronym.lower() == request.vars.course.lower()).select()
+        if len(subj)>0:
+            results = db((db.course.subject == subj.first()) | (db.course.nbr == request.vars.number)).select(orderby=db.course.nbr)
+        else:
+            results = []
     
-    if request.args(0) == 'search' and request.vars.subject != None and request.vars.subject!= None:
-        results = db((db.course.subject.lower() == request.vars.subject.lower()) | (db.course.nbr == request.vars.number)).select(orderby=db.course.nbr)
-  
     sbjcts = db().select(db.subject.ALL, orderby=db.subject.acronym)
     return dict(sbjcts=sbjcts, form=form, message=message, results=results)
 
 def contact():
     return dict()
 
+def new():
+    courseform = SQLFORM(db.course)
+    subjectform = SQLFORM(db.subject)
+    if courseform.process().accepted:
+        redirect(URL('default', 'new'))
+    if subjectform.process().accepted:
+        redirect(URL('default', 'new'))
+    return dict(courseform=courseform, subjectform=subjectform)
+
 def professors():
     form = SQLFORM.factory(Field('search'))
     profs = ''
     if form.process().accepted:
         redirect(URL('default', 'professors', vars=dict(s=form.vars.search)))
-    
+
     if request.vars.s != None:
         profs = db(((db.professor.last_name).lower() == (request.vars.s).lower()) | ((db.professor.first_name).lower() == (request.vars.s).lower()) ).select(orderby=db.professor.last_name)
-        
     return dict(form=form, profs=profs)
-    
+
 def newprofessor():
     form = SQLFORM(db.professor)
     if form.process().accepted:

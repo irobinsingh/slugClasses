@@ -9,7 +9,7 @@
 		.btn {			text-decoration: none; font-weight: bolder;x}
 	</style>
 </head>
-
+{{=message}}
 <div id="wrapper">
 	<div id="indented" style="padding-bottom: 20px">
 
@@ -21,21 +21,20 @@
 		</div>
 
 		{{if request.args(0) == 'search':}}
-			{{if request.vars.subject != None and request.vars.number != None:}}
+			{{if request.vars.course != None and request.vars.number != None:}}
 				{{if len(results) > 0:}}
-					{{query = (request.vars.subject + request.vars.number)}}		
+					{{query = (request.vars.course + ' ' + request.vars.number)}}		
 					<h3 align="center" style="padding-bottom: 8px;"> We've found {{=len(results)}} professors matching '<span style="color:blue">{{=query}}</span>'</h3>
 						<table style="margin-bottom: 5px; margin-left:60px">
 							{{for r in results:}}
-								{{nam = r.subject + ' ' + r.nbr}}
 								<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> 
-									<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', args=[nam])}}"> {{=nam}} </a> 
+									<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', args=[query])}}"> {{=query.upper()}} </a> 
 								</td> </tr>
 							{{pass}}
 						</table>
 				{{else:}}
-						{{query = (request.vars.subject + request.vars.number)}}
-						<h3 align="center" style="padding-bottom: 40px"> Sorry no results found for '<span style="color: red">{{=query}}</span>'</h3>
+					{{query = (request.vars.course + ' ' +request.vars.number)}}
+					<h3 align="center" style="padding-bottom: 40px"> Sorry no results found for '<span style="color: red">{{=query}}</span>'</h3>
 				{{pass}}
 			{{pass}}
 			
@@ -57,7 +56,7 @@
 
 		<div align="center" style="margin-bottom:40px">
 			<span style="font-size: 13px"> Can't find what you're looking for? </span> <br />
-			{{=A('Add a new course', _class='btn', _href=URL('default', 'newclass'))}}
+			{{=A('Add a new course', _class='btn', _href=URL('default', 'new'))}}
 		</div>
 	</div>
 </div>
