@@ -1,5 +1,63 @@
 {{extend 'layout.html'}}
 
-<div id="wrapper">
+<head>
+	<style>
+		.subjects {		font-size: 20px; text-decoration:none; font-weight:bolder; color:black;}
+		.subjects:hover {	color: #3300FF}
+		.sbjcts { 	font-size:40px; text-align:center; padding-top:20px;}
+		.search {		padding-top: 15px; padding-bottom: 40px;}
+		.btn {			text-decoration: none; font-weight: bolder;x}
+	</style>
+</head>
 
+<div id="wrapper">
+	<div id="indented" style="padding-bottom: 20px">
+
+		<h1 class="sbjcts"> Classes </h1>
+		<h2 style="text-align: center; font-size:16px;"> Use this form to search through all available classes</h2>
+		<div class="search" align="center"> 
+			{{=form}}
+			 <p style="text-align: center; color:red">{{=message}}</p>
+		</div>
+
+		{{if request.args(0) == 'search':}}
+			{{if request.vars.subject != None and request.vars.number != None:}}
+				{{if len(results) > 0:}}
+					{{query = (request.vars.subject + request.vars.number)}}		
+					<h3 align="center" style="padding-bottom: 8px;"> We've found {{=len(results)}} professors matching '<span style="color:blue">{{=query}}</span>'</h3>
+						<table style="margin-bottom: 5px; margin-left:60px">
+							{{for r in results:}}
+								{{nam = r.subject + ' ' + r.nbr}}
+								<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> 
+									<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', args=[nam])}}"> {{=nam}} </a> 
+								</td> </tr>
+							{{pass}}
+						</table>
+				{{else:}}
+						{{query = (request.vars.subject + request.vars.number)}}
+						<h3 align="center" style="padding-bottom: 40px"> Sorry no results found for '<span style="color: red">{{=query}}</span>'</h3>
+				{{pass}}
+			{{pass}}
+			
+		{{else:}}
+		<h1 class="sbjcts"> Subjects </h1>
+		<h2 style="text-align: center; font-size:16px;"> List of subjects currently in our database</h2>
+	
+		{{if len(sbjcts) > 0:}}
+				<table style="margin-bottom: 5px; margin-left:60px">
+					{{for s in sbjcts:}}
+						{{nam = s.acronym.upper() + ': ' + s.title.title()}}
+						<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> 
+							<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'subject', args=[s.acronym])}}"> {{=nam}} </a> 
+						</td> </tr>
+					{{pass}}
+				</table>
+		{{pass}}
+		{{pass}}
+
+		<div align="center" style="margin-bottom:40px">
+			<span style="font-size: 13px"> Can't find what you're looking for? </span> <br />
+			{{=A('Add a new course', _class='btn', _href=URL('default', 'newclass'))}}
+		</div>
+	</div>
 </div>

@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-CATEGORY = ['ACEN', 'AMS', 'ANTH', 'ART', 'BIO', 'CHEM', 'CMPE',
-             'CMPS', 'ECON'],
-
 
 db.define_table('professor',
                 Field('first_name', required=True),
                 Field('last_name', required=True)
                 )
 
+db.define_table('subject',
+                Field('acronym'),
+                Field('title'))
+
 db.define_table('course',
-                Field('subject', required=True),
-                Field('nbr', label="number", required=True),
-                Field('title', required=True),
+                Field('subject', db.subject),
+                Field('nbr', label="number"),
+                Field('title'),
                 )
 
 db.define_table('revision',
@@ -33,6 +34,10 @@ db.define_table('note',
                 Field('thumbsdowns', 'integer', readable=False)
                 )
 
-db.define_table('subject',
-                Field('name')
-                )
+subjects = []
+subs = db().select(db.subject.ALL, orderby=db.subject.acronym)
+for s in subs:
+    subjects.append(s.acronym)
+
+db.course.subject.requires = IS_IN_SET(subjects, zero=None)
+    

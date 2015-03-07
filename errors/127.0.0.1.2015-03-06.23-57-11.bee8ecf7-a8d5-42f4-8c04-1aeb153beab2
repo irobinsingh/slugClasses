@@ -1,0 +1,216 @@
+(dp1
+S'output'
+p2
+S'missing "pass" in view'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S'response.write(\'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\\n\\n<html xmlns="http://www.w3.org/1999/xhtml">\\n<head>\\n<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />\\n<title>Slug Classes</title>\\n<meta name="keywords" content="" />\\n<meta name="description" content="" />\\n\\n<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />\\n<link href="\', escape=False)\nresponse.write(URL(\'static\', \'css/default.css\'))\nresponse.write(\'" rel="stylesheet" type="text/css" media="all" />\\n<link href="\', escape=False)\nresponse.write(URL(\'static\', \'fonts.css\'))\nresponse.write(\'" rel="stylesheet" type="text/css" media="all" />\\n<link rel="shortcut icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'images/favicon.ico\'))\nresponse.write(\'" type="image/x-icon">\\n<link rel="apple-touch-icon" href="\', escape=False)\nresponse.write(URL(\'static\',\'images/favicon.png\'))\nresponse.write(\'">\\n\\n\\n<script src="\', escape=False)\nresponse.write(URL(\'static\',\'js/modernizr.custom.js\'))\nresponse.write(\'"></script>\\n\\n<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->\\n  \\t\\t\\t\\n\\n</head>\\n<body>\\n<div id="header-wrapper">\\n\\t<div id="header" class="container">\\n\\t\\t<div id="logo">\\n\\t\\t\\t<img style="-webkit-filter: invert(100%);" src="\', escape=False)\nresponse.write(URL(\'static\', \'images/slug.png\'))\nresponse.write(\'" alt="slug" height="41" width="128">\\n\\t\\t\\t<h1><a href="\', escape=False)\nresponse.write(URL(\'default\', \'index\'))\nresponse.write(\'">Slug Classes</a></h1>\\n\\t\\t\\t<span>University of California, Santa Cruz</span>\\n\\t\\t</div>\\n\\t\\t<div id="triangle-up"></div>\\n\\t</div>\\n</div>\\n<div id="menu-wrapper">\\n\\t\\t<div id="menu">\\n\\t\\t\\t<ul>\\n\\t\\t\\t\\t<li class="current_page_item"><a href="\', escape=False)\nresponse.write(URL(\'default\', \'index\'))\nresponse.write(\'" accesskey="1" title="">Homepage</a></li>\\n\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'default\', \'classes\'))\nresponse.write(\'" accesskey="2" title="">Classes</a></li>\\n\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'default\', \'professors\'))\nresponse.write(\'" accesskey="3" title="">Professors</a></li>\\n\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'default\', \'user/profile\'))\nresponse.write(\'" accesskey="4" title="">My Slug</a></li>\\n\\t\\t\\t\\t<li><a href="\', escape=False)\nresponse.write(URL(\'default\', \'contact\'))\nresponse.write(\'" accesskey="5" title="">Contact Us</a></li>\\n\\t\\t\\t</ul>\\n\\t\\t</div>\\n</div>\\n\\n<div id="insertedContent">\\n\\t\', escape=False)\nresponse.write(\' \\n\\t\', escape=False)\nresponse.write(\'\\n\\n<head>\\n\\t<style>\\n\\t\\t.subjects {\\t\\tfont-size: 20px; text-decoration:none; font-weight:bolder; color:black;}\\n\\t\\t.subjects:hover {\\tcolor: #3300FF}\\n\\t\\t.sbjcts { \\tfont-size:40px; text-align:center; padding-top:20px;}\\n\\t\\t.search {\\t\\tpadding-top: 15px; padding-bottom: 40px;}\\n\\t\\t.btn {\\t\\t\\ttext-decoration: none; font-weight: bolder;x}\\n\\t</style>\\n</head>\\n\\n<div id="wrapper">\\n\\t<div id="indented" style="padding-bottom: 20px">\\n\\n\\t\\t<h1 class="sbjcts"> Classes </h1>\\n\\t\\t<h2 style="text-align: center; font-size:16px;"> Use this form to search through all available classes</h2>\\n\\t\\t<div class="search" align="center"> \\n\\t\\t\\t\', escape=False)\nresponse.write(form)\nresponse.write(\'\\n\\t\\t\\t\', escape=False)\nif message != \'\':\n    response.write(\'\\n\\t\\t\\t\\t<p style="text-align: center; color:red">\', escape=False)\n    response.write(message)\n    response.write(\'</p>\\n\\t\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\t</div>\\n\\n\\t\\t\', escape=False)\nif request.args(0) == \'search\':\n    response.write(\'\\n\\t\\t\\t\', escape=False)\n    if len(results) > 0:\n        response.write(\'\\n\\t\\t\\t\\t\', escape=False)\n        query = (request.vars.subject + \' \' + request.vars.number)\n        response.write(\'\\t\\t\\n\\t\\t\\t\\t<h3 align="center" style="padding-bottom: 8px;"> We\\\'ve found \', escape=False)\n        response.write(len(results))\n        response.write(\' professors matching \\\'<span style="color:blue">\', escape=False)\n        response.write(query)\n        response.write(\'</span>\\\'</h3>\\n\\t\\t\\t\\t\\t<table style="margin-bottom: 5px; margin-left:60px">\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n        for r in results:\n            response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t\', escape=False)\n            nam = r.subject + \' \' + r.nbr\n            response.write(\'\\n\\t\\t\\t\\t\\t\\t\\t<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> \\n\\t\\t\\t\\t\\t\\t\\t\\t<span class="icon icon-chevron-right"></span> <a class="subjects" href="\', escape=False)\n            response.write(URL(\'default\', \'course\', args=[nam]))\n            response.write(\'"> \', escape=False)\n            response.write(nam)\n            response.write(\' </a> \\n\\t\\t\\t\\t\\t\\t\\t</td> </tr>\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n            pass\n        response.write(\'\\n\\t\\t\\t\\t\\t</table>\\n\\t\\t\\t\', escape=False)\n    else:\n        response.write(\'\\n\\t\\t\\t\\t\', escape=False)\n        if request.vars.subject != None and request.vars.number != None:\n            response.write(\'\\n\\t\\t\\t\\t\\t\', escape=False)\n            query = (request.vars.subject + \' \' + request.vars.number)\n            response.write(\'\\n\\t\\t\\t\\t\\t<h3 align="center" style="padding-bottom: 40px"> Sorry no results found for \\\'<span style="color: red">\', escape=False)\n            response.write(query)\n            response.write("</span>\'</h3>\\n\\t\\t\\t", escape=False)\n            pass\n        response.write(\'\\n\\t\\t\\t\\n\\t\\t\', escape=False)\n    else:\n        response.write(\'\\n\\t\\t<h1 class="sbjcts"> Subjects </h1>\\n\\t\\t<h2 style="text-align: center; font-size:16px;"> List of subjects currently in our database</h2>\\n\\t\\n\\t\\t\', escape=False)\n        if len(sbjcts) > 0:\n            response.write(\'\\n\\t\\t\\t\\t<table style="margin-bottom: 5px; margin-left:60px">\\n\\t\\t\\t\\t\\t\', escape=False)\n            for s in sbjcts:\n                response.write(\'\\n\\t\\t\\t\\t\\t\\t\', escape=False)\n                nam = s.acronym.upper() + \': \' + s.title.title()\n                response.write(\'\\n\\t\\t\\t\\t\\t\\t<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> \\n\\t\\t\\t\\t\\t\\t\\t<span class="icon icon-chevron-right"></span> <a class="subjects" href="\', escape=False)\n                response.write(URL(\'default\', \'subject\', args=[s.acronym]))\n                response.write(\'"> \', escape=False)\n                response.write(nam)\n                response.write(\' </a> \\n\\t\\t\\t\\t\\t\\t</td> </tr>\\n\\t\\t\\t\\t\\t\', escape=False)\n                pass\n            response.write(\'\\n\\t\\t\\t\\t</table>\\n\\t\\t\', escape=False)\n            pass\n        response.write(\'\\n\\t\\t\', escape=False)\n        pass\n    response.write(\'\\n\\n\\t\\t<div align="center" style="margin-bottom:40px">\\n\\t\\t\\t<span style="font-size: 13px"> Can\\\'t find what you\\\'re looking for? </span> <br />\\n\\t\\t\\t\', escape=False)\n    response.write(A(\'Add a new course\', _class=\'btn\', _href=URL(\'default\', \'newclass\')))\n    response.write(\'\\n\\t\\t</div>\\n\\t</div>\\n</div>\\n\', escape=False)\n    response.write(\' \\n\\t\', escape=False)\n    response.write(\'\\n</div>\\n\\n<div id="stamp" class="container">\\n\\t<div class="hexagon"><span class="icon icon-wrench"></span></div>\\n</div>\\n\\n<div id="copyright" class="container">\\n\\t<p>&copy; Slug Classes. All rights reserved. | Robin Singh Kalpana Chinnappan | Design by <a href="http://web2py.com/layouts" target="_blank">TEMPLATED</a>.</p>\\n</div>\\n\\n</body>\\n</html>\\n\', escape=False)'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__module__'
+p12
+S"'gluon.rocket'"
+p13
+sS'__getslice__'
+p14
+S"<method-wrapper '__getslice__' of SocketTimeout object>"
+p15
+sS'__str__'
+p16
+S"<method-wrapper '__str__' of SocketTimeout object>"
+p17
+sS'__reduce__'
+p18
+S'<built-in method __reduce__ of SocketTimeout object>'
+p19
+sS'__dict__'
+p20
+S'{}'
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of SocketTimeout object>'
+p23
+sS'__weakref__'
+p24
+S'None'
+p25
+sS'__init__'
+p26
+S"<method-wrapper '__init__' of SocketTimeout object>"
+p27
+sS'__setattr__'
+p28
+S"<method-wrapper '__setattr__' of SocketTimeout object>"
+p29
+sS'__reduce_ex__'
+p30
+S'<built-in method __reduce_ex__ of SocketTimeout object>'
+p31
+sS'__new__'
+p32
+S'<built-in method __new__ of type object>'
+p33
+sS'__format__'
+p34
+S'<built-in method __format__ of SocketTimeout object>'
+p35
+sS'__class__'
+p36
+S"<class 'gluon.rocket.SocketTimeout'>"
+p37
+sS'__doc__'
+p38
+S"'Exception for when a socket times out between requests.'"
+p39
+sS'__getitem__'
+p40
+S"<method-wrapper '__getitem__' of SocketTimeout object>"
+p41
+sS'__setstate__'
+p42
+S'<built-in method __setstate__ of SocketTimeout object>'
+p43
+sS'__getattribute__'
+p44
+S"<method-wrapper '__getattribute__' of SocketTimeout object>"
+p45
+sS'args'
+p46
+S"('Socket timed out before request.',)"
+p47
+sS'__subclasshook__'
+p48
+S'<built-in method __subclasshook__ of type object>'
+p49
+sS'__unicode__'
+p50
+S'<built-in method __unicode__ of SocketTimeout object>'
+p51
+sS'__delattr__'
+p52
+S"<method-wrapper '__delattr__' of SocketTimeout object>"
+p53
+sS'__repr__'
+p54
+S"<method-wrapper '__repr__' of SocketTimeout object>"
+p55
+sS'__hash__'
+p56
+S"<method-wrapper '__hash__' of SocketTimeout object>"
+p57
+ssS'evalue'
+p58
+S'Socket timed out before request.'
+p59
+sS'frames'
+p60
+(lp61
+(dp62
+S'file'
+p63
+S'C:\\Users\\Robin\\Desktop\\etc\\web2py\\gluon\\rocket.py'
+p64
+sS'dump'
+p65
+(dp66
+sS'lnum'
+p67
+I1337
+sS'lines'
+p68
+(dp69
+sS'call'
+p70
+S'(self=<WSGIWorker(Thread-2, started daemon 4936)>)'
+p71
+sS'func'
+p72
+S'run'
+p73
+sa(dp74
+g63
+S'C:\\Users\\Robin\\Desktop\\etc\\web2py\\gluon\\rocket.py'
+p75
+sg65
+(dp76
+sg67
+I1830
+sg68
+(dp77
+sg70
+S'(self=<WSGIWorker(Thread-2, started daemon 4936)>, conn=<gluon.rocket.Connection object>)'
+p78
+sg72
+S'run_app'
+p79
+sa(dp80
+g63
+S'C:\\Users\\Robin\\Desktop\\etc\\web2py\\gluon\\rocket.py'
+p81
+sg65
+(dp82
+sg67
+I1650
+sg68
+(dp83
+sg70
+S'(self=<WSGIWorker(Thread-2, started daemon 4936)>, sock_file=<socket._fileobject object>, conn=<gluon.rocket.Connection object>)'
+p84
+sg72
+S'build_environ'
+p85
+sa(dp86
+g63
+S'C:\\Users\\Robin\\Desktop\\etc\\web2py\\gluon\\rocket.py'
+p87
+sg65
+(dp88
+sg67
+I1401
+sg68
+(dp89
+sg70
+S'(self=<WSGIWorker(Thread-2, started daemon 4936)>, sock_file=<socket._fileobject object>)'
+p90
+sg72
+S'read_request_line'
+p91
+sasS'pyver'
+p92
+S'Python 2.7.6: C:\\Users\\Robin\\Desktop\\etc\\web2py\\web2py.exe (prefix: C:\\Users\\Robin\\Anaconda)'
+p93
+sS'etype'
+p94
+S"<class 'gluon.rocket.SocketTimeout'>"
+p95
+sS'date'
+p96
+S'Fri Mar 06 23:57:11 2015'
+p97
+sS'locals'
+p98
+(dp99
+S'sock_file'
+p100
+S'<socket._fileobject object>'
+p101
+sS'self'
+p102
+S'<WSGIWorker(Thread-2, started daemon 4936)>'
+p103
+sssS'traceback'
+p104
+S'Traceback (most recent call last):\n  File "gluon/rocket.py", line 1337, in run\n  File "gluon/rocket.py", line 1830, in run_app\n  File "gluon/rocket.py", line 1650, in build_environ\n  File "gluon/rocket.py", line 1401, in read_request_line\nSocketTimeout: Socket timed out before request.\n'
+p105
+s.

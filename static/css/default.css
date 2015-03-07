@@ -1132,7 +1132,7 @@ input[type='submit'].active, input[type='submit']:active
 /*============================================================
 				Form input
 ==============================================================*/
-.string, .password
+.string, .password, .integer
 {
 	-webkit-appearance: none;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset, rgba(82, 168, 236, 0.545098) 0px 0px 7.27906656265259px 0px;

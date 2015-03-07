@@ -21,7 +21,22 @@ def index():
     return dict(message=T('Hello World'))
 
 def classes():
-    return dict()
+    form = SQLFORM.factory(Field('subject', required=True), Field('number', 'integer', required=True))
+    message = ''
+    results = ''
+    if form.process().accepted:
+        if(form.vars.subject == None or form.vars.number == None):
+            message = 'Error, please enter a valid search query.'
+            if(request.args(0) == 'search'):
+                redirect(URL('default', 'classes'))
+        else:
+            redirect(URL('default', 'classes', args=['search'], vars=dict(course=form.vars.subject, number=form.vars.nbr)))
+    
+    if request.args(0) == 'search' and request.vars.subject != None and request.vars.subject!= None:
+        results = db((db.course.subject.lower() == request.vars.subject.lower()) | (db.course.nbr == request.vars.number)).select(orderby=db.course.nbr)
+  
+    sbjcts = db().select(db.subject.ALL, orderby=db.subject.acronym)
+    return dict(sbjcts=sbjcts, form=form, message=message, results=results)
 
 def contact():
     return dict()
@@ -37,7 +52,13 @@ def professors():
         
     return dict(form=form, profs=profs)
     
-    
+def newprofessor():
+    form = SQLFORM(db.professor)
+    if form.process().accepted:
+        nam = form.vars.first_name + ' ' + form.vars.last_name
+        redirect(URL('default', 'professor', args=[nam]))
+    return dict(form=form)
+
 def user():
     """
     exposes:

@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+<head>
+	<style>
+		.profs {		font-size: 20px; text-decoration:none; font-weight:bolder; color:black;}
+		.profs:hover {	color: #3300FF}
+		.professors { 	font-size:40px; text-align:center; padding-top:20px;}
+		.search {		padding-top: 15px; padding-bottom: 40px;}
+		.btn {			text-decoration: none; font-weight: bolder;x}
+	</style>
+</head>
+
+<div id="wrapper">
+	<div id="indented" style="padding-bottom: 20px;">
+		<h1 class="professors"> Add a new professors </h1>
+		<h2 style="text-align: center; font-size:16px;"> Please ensure that this professor isn't already in our database. </h2>
+		<div class="search" align="center"> {{=form}} </div>
+		
+	</div>
+</div>
