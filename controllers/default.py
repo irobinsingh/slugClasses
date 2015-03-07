@@ -45,6 +45,7 @@ def classes():
 def contact():
     return dict()
     
+
 def termsandconditions():
     return dict()
 
@@ -59,6 +60,7 @@ def new():
     if subjectform.process().accepted:
         redirect(URL('default', 'new'))
     return dict(courseform=courseform, subjectform=subjectform)
+
 
 def professors():
     form = SQLFORM.factory(Field('search'))
