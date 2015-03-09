@@ -8,7 +8,7 @@ db.define_table('professor',
                 )
 
 db.define_table('subject',
-                Field('acronym'),
+                Field('acronym', unique=True),
                 Field('title'))
 
 db.define_table('course',
@@ -34,10 +34,5 @@ db.define_table('note',
                 Field('thumbsdowns', 'integer', readable=False)
                 )
 
-subjects = []
-subs = db().select(db.subject.ALL, orderby=db.subject.acronym)
-for s in subs:
-    subjects.append(s.acronym)
-
-#db.course.subject.requires = IS_IN_SET(subjects, zero=None)
+db.course.subject.requires = IS_IN_DB(db, 'subject.id', '%(acronym)s: %(title)s')
     

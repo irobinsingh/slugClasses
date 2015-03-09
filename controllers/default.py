@@ -35,12 +35,29 @@ def classes():
     if request.args(0) == 'search' and request.vars.course != None and request.vars.number!= None:
         subj = db(db.subject.acronym.lower() == request.vars.course.lower()).select()
         if len(subj)>0:
-            results = db((db.course.subject == subj.first()) | (db.course.nbr == request.vars.number)).select(orderby=db.course.nbr)
+            results = db((db.course.nbr == request.vars.number) & (db.course.subject == subj.first()) ).select(orderby=db.course.nbr)
         else:
             results = []
     
     sbjcts = db().select(db.subject.ALL, orderby=db.subject.acronym)
     return dict(sbjcts=sbjcts, form=form, message=message, results=results)
+
+def subject():
+    form = SQLFORM.factory(Field('subject', required=True), Field('number', 'integer', required=True))
+    results = ''
+    message = ''
+    if form.process().accepted:
+        if(form.vars.subject == None or form.vars.number == None):
+            message = 'Error, please enter a valid search query.'
+            if(request.args(0) == 'search'):
+                redirect(URL('default', 'classes'))
+        else:
+            redirect(URL('default', 'classes', args=['search'], vars=dict(course=form.vars.subject, number=form.vars.number)))
+    
+    subj = db(db.subject.acronym.lower() == request.args(0).lower()).select().first()
+    results = db(db.course.subject == subj.id).select()
+    
+    return dict(category=subj.title.title(), message=message, form=form, results=results)
 
 def contact():
     return dict()
@@ -49,8 +66,6 @@ def contact():
 def termsandconditions():
     return dict()
 
-def announcements():
-    return dict()
 
 def new():
     courseform = SQLFORM(db.course)

@@ -1135,7 +1135,7 @@ input[type='submit'].active, input[type='submit']:active
 .string, .password, .integer
 {
 	-webkit-appearance: none;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset, rgba(82, 168, 236, 0.545098) 0px 0px 7.27906656265259px 0px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
 	-webkit-rtl-ordering: logical;
 	-webkit-transition-delay: 0s, 0s;
 	-webkit-transition-duration: 0.2s, 0.2s;
@@ -1144,7 +1144,7 @@ input[type='submit'].active, input[type='submit']:active
 	-webkit-user-select: text;
 	-webkit-writing-mode: horizontal-tb;
 	background-color: rgb(255, 255, 255);
-	border-bottom-color: rgba(95, 172, 232, 0.819608);
+	border-bottom-color: rgb(204, 204, 204);
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	border-bottom-style: solid;
@@ -1155,18 +1155,18 @@ input[type='submit'].active, input[type='submit']:active
 	border-image-slice: 100%;
 	border-image-source: none;
 	border-image-width: 1;
-	border-left-color: rgba(95, 172, 232, 0.819608);
+	border-left-color: rgb(204, 204, 204);
 	border-left-style: solid;
 	border-left-width: 1px;
-	border-right-color: rgba(95, 172, 232, 0.819608);
+	border-right-color: rgb(204, 204, 204);
 	border-right-style: solid;
 	border-right-width: 1px;
-	border-top-color: rgba(95, 172, 232, 0.819608);
+	border-top-color: rgb(204, 204, 204);
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
 	border-top-style: solid;
 	border-top-width: 1px;
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset, rgba(82, 168, 236, 0.545098) 0px 0px 7.27906656265259px 0px;
+	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
 	color: rgb(85, 85, 85);
 	cursor: auto;
 	display: inline-block;
@@ -1278,4 +1278,68 @@ input[type='submit'].active, input[type='submit']:active
 .indented
 {
 	padding: 50px 0px 50px 80px
+}
+
+/*===========================================================
+				web2py
+=============================================================*/
+#course_subject
+{
+	nulist-button;
+	-webkit-rtl-ordering: logical;
+	-webkit-writing-mode: horizontal-tb;
+	align-items: center;
+	background-color: rgb(255, 255, 255);
+	border-bottom-color: rgb(204, 204, 204);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-collapse: collapse;
+	border-image-outset: 0px;
+	border-image-repeat: stretch;
+	border-image-slice: 100%;
+	border-image-source: none;
+	border-image-width: 1;
+	border-left-color: rgb(204, 204, 204);
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-color: rgb(204, 204, 204);
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-top-color: rgb(204, 204, 204);
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top-style: solid;
+	border-top-width: 1px;
+	box-sizing: border-box;
+	color: rgb(85, 85, 85);
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	height: 30px;
+	letter-spacing: normal;
+	line-height: normal;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	padding-bottom: 4px;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 4px;
+	text-align: start;
+	text-indent: 0px;
+	text-rendering: auto;
+	text-shadow: none;
+	text-transform: none;
+	vertical-align: middle;
+	white-space: pre;
+	width: 220px;
+	word-spacing: 0px;
+	writing-mode: lr-tb
 }
