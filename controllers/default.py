@@ -9,6 +9,43 @@
 ## - api is an example of Hypermedia API support and access control
 #########################################################################
 
+def get_full_name():
+    name = 'anonymous'
+    if auth.user:
+        name = auth.user.first_name + ' ' +auth.user.last_name
+    return name
+
+def review():
+    form = ''
+    message = ''
+    if request.args(1) == 'error':
+        message = 'ERROR: class not found'
+    if(request.args(0) == 'class'):
+        form= SQLFORM.factory(
+                              Field('professor', db.professor, requires = IS_IN_DB(db, 'professor.id', '%(last_name)s, %(first_name)s')),
+                              Field('summary'),
+                              Field('body', 'text'),)
+        subj = db(db.subject.acronym.lower() == request.vars.s.lower()).select()
+        clss = db((db.course.nbr == request.vars.n) & (db.course.subject == subj.first())).select().first()
+        if form.process().accepted:
+            db.revision.insert(course_id = clss.id, professor_id = form.vars.professor, author=get_full_name(), date_created=datetime.utcnow(), summary=form.vars.summary, body=form.vars.body)
+            redirect(URL('default', 'classes'))
+    
+    if(request.args(0) == 'professor'):
+        form= SQLFORM.factory(
+                              Field('subject', db.subject, requires = IS_IN_DB(db, 'subject.id', '%(acronym)s: %(title)s')),
+                              Field('nbr', label="number"),
+                              Field('summary'),
+                              Field('body', 'text'),)
+        if form.process().accepted:
+            clss = db((db.course.nbr == form.vars.nbr) & (db.course.subject == form.vars.subject)).select().first()
+            prof = db((db.professor.last_name.lower() == request.vars.l.lower()) & (db.professor.first_name.lower() == request.vars.f.lower())).select().first()
+            if clss == None:
+                redirect(URL('default', 'review', args=[request.args(0), 'error'], vars=dict(l=request.vars.l, f=request.vars.f, s=request.vars.s, n=request.vars.n)))
+            db.revision.insert(course_id = clss.id, professor_id = prof.id, author=get_full_name(), date_created=datetime.utcnow(), summary=form.vars.summary, body=form.vars.body)
+            redirect(URL('default', 'professor', vars=dict(l=request.vars.l, f=request.vars.f)))
+    return dict(form=form, message=message)
+
 def index():
     """
     example action using the internationalization operator T and flash
@@ -42,6 +79,28 @@ def classes():
     sbjcts = db().select(db.subject.ALL, orderby=db.subject.acronym)
     return dict(sbjcts=sbjcts, form=form, message=message, results=results)
 
+def course():
+    subj = db(db.subject.acronym.lower() == request.vars.s.lower()).select()
+    clss = ''
+    reviews = []
+    if len(subj)>0:
+        clss = db((db.course.nbr == request.vars.n) & (db.course.subject == subj.first()) ).select().first()
+
+    if clss != '':
+        reviews = db(db.revision.course_id == clss.id).select(orderby=db.revision.date_created)
+    return dict(form=reviews)
+
+def professor():
+    prof = ''
+    if request.vars.l != None and request.vars.f != None:
+        prof = db((db.professor.last_name.lower() == request.vars.l.lower()) & (db.professor.first_name.lower() == request.vars.f.lower())).select().first()
+   
+    reviews = []
+    if prof != '':
+        reviews = db(db.revision.professor_id == prof.id).select(orderby=db.revision.date_created)
+    return dict(form=reviews)
+
+
 def subject():
     form = SQLFORM.factory(Field('subject', required=True), Field('number', 'integer', required=True))
     results = ''
@@ -66,7 +125,7 @@ def contact():
 def termsandconditions():
     return dict()
 
-
+@auth.requires_login()
 def new():
     courseform = SQLFORM(db.course)
     subjectform = SQLFORM(db.subject)
@@ -87,6 +146,7 @@ def professors():
         profs = db(((db.professor.last_name).lower() == (request.vars.s).lower()) | ((db.professor.first_name).lower() == (request.vars.s).lower()) ).select(orderby=db.professor.last_name)
     return dict(form=form, profs=profs)
 
+@auth.requires_login()
 def newprofessor():
     form = SQLFORM(db.professor)
     if form.process().accepted:

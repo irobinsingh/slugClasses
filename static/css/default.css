@@ -454,13 +454,11 @@ ul.contact li a.icon-rss:before
 		display: inline-block;
 		margin-left: 0.50em;
 		padding: 2em 1.5em 1em 1.5em;
-		letter-spacing: 0.20em;
 		text-decoration: none;
 		font-size: 0.90em;
 		font-weight: 600;
 		text-transform: uppercase;
 		outline: 0;
-		color: #FFF;
 	}
 	
 	#menu li:hover a, #menu li.active a, #menu li.active span
@@ -531,7 +529,6 @@ ul.contact li a.icon-rss:before
 
 #wrapper
 {
-	background: #FFF;
 }
 
 #page
@@ -643,7 +640,6 @@ ul.contact li a.icon-rss:before
 {
 	overflow: hidden;
 	padding: 10em 0em;
-	background: #FFF;
 	text-align: center;
 }
 
@@ -1283,7 +1279,7 @@ input[type='submit'].active, input[type='submit']:active
 /*===========================================================
 				web2py
 =============================================================*/
-#course_subject
+#course_subject, #revision_professor_id, #no_table_professor, #no_table_subject
 {
 	nulist-button;
 	-webkit-rtl-ordering: logical;
@@ -1342,4 +1338,124 @@ input[type='submit'].active, input[type='submit']:active
 	width: 220px;
 	word-spacing: 0px;
 	writing-mode: lr-tb
+}
+
+.toyellow
+{
+	letter-spacing:.2em;
+	color: white;
+	-webkit-transition: color 1s, letter-spacing .5s;
+	transition: color 1s, letter-spacing 1s;
+}
+
+.toyellow:hover
+{
+	color: #ffc000;
+	letter-spacing: 8px;
+}
+
+.slug
+{
+	-webkit-transition: -webkit-transform .5s, transform .5s; 
+	transition: transform .5s
+}
+
+.slug:hover
+{
+    -webkit-transform: rotateY(130deg);
+    transform: rotateY(130deg);
+}
+
+.err
+{
+	text-align: center;
+   	background-color: red;
+    color: white;
+    	
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .5s;
+
+    -webkit-animation-name: dropHeader;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: .5s;
+
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .5s;
+}
+
+@-moz-keyframes dropHeader {
+    0% {
+        -moz-transform: translateX(-2000px);
+    }
+    100% {
+        -moz-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes dropHeader {
+    0% {
+        -webkit-transform: translateX(-2000px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+    }
+}
+
+@keyframes dropHeader {
+    0% {
+        transform: translateX(-2000px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+#menu
+{   	
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+
+    -webkit-animation-name: dropHeader;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-duration: .5s;
+
+    animation-name: dropHeader;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+}
+
+@-moz-keyframes dropHeader {
+    0% {
+        -moz-transform: translateX(-1000px);
+    }
+    100% {
+        -moz-transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes dropHeader {
+    0% {
+        -webkit-transform: translateX(-1000px);
+    }
+    100% {
+        -webkit-transform: translateX(0);
+    }
+}
+
+@keyframes dropHeader {
+    0% {
+        transform: translateX(-1000px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

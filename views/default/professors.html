@@ -21,7 +21,7 @@
 					{{for p in profs:}}
 						{{nam = p.first_name + ' ' + p.last_name}}
 						<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> 
-							<span class="icon icon-chevron-right"></span> <a class="profs" href="{{=URL('default', 'professor', args=[nam])}}"> {{=nam}} </a> 
+							<span class="icon icon-chevron-right"></span> <a class="profs" href="{{=URL('default', 'professor', vars=dict(f=p.first_name, l=p.last_name))}}"> {{=nam}} </a> 
 						</td> </tr>
 					{{pass}}
 				</table>

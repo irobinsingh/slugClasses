@@ -1,0 +1,56 @@
+{{extend 'layout.html'}}
+
+<head>
+	<style>
+		.subjects {			font-size: 20px; text-decoration:none; font-weight:bolder; color:black;}
+		.subjects:hover {	color: #3300FF}
+		.header { 			font-size:40px; text-align:center; padding-top:20px;}
+		.search {			padding-top: 15px; padding-bottom: 40px;}
+		.btn {				text-decoration: none; font-weight: bolder;x}
+		.grad {				
+							background: radial-gradient(rgba(255,226,137,.3), rgba(255,216,98,0.0));}
+		tr.border_bottom td{border-bottom: 1pt solid #ffc000;}
+
+	</style>
+</head>
+
+<div id="wrapper">
+	<div id="indented" style="padding-bottom: 20px; padding-left:20%; padding-right:20%;">
+	
+		<h1 class="header">{{=request.vars.f.title() + ' ' + request.vars.l.title()}}<br /><br /></h1>
+
+		{{if len(form) > 0:}}
+		
+			<table width="100%" class="grad">
+				<h2 align="center" style="color:gray"> What people are saying about this Professor: </h2>
+				{{for r in form:}}
+				<tr class="border_bottom">
+					{{clss = db(db.course.id == r.course_id).select().first()}}
+					{{sbj = db(db.subject.id == clss.subject).select().first()}}
+					<td width="40%"  style="padding-top:10px; padding-bottom:10px;">
+						<div><span style="color:gray">Class: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> <span style="font-weight:bold">{{=sbj.acronym +' '+ clss.nbr}}</span></div>
+						<div><span style="color:gray">Reviwed by: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><span>{{=r.author}}</span></div>
+						<div><span style="color:gray">Date Reviewed: &nbsp&nbsp&nbsp</span><span>{{=r.date_created}}</span></div>
+					</td>
+					<td width="60%"  style="padding-top:10px; padding-bottom:10px;">
+						<div><span style="font-weight:bold;">{{=r.summary}}</span></div>
+						<div class=span12>{{=r.body}}</div>
+					</td>
+				</tr>
+				{{pass}}
+			</table>
+		
+		{{else:}}
+		<p> There are no reviews to show. </p>
+		{{pass}}
+		
+<p>
+{{b = 'Return to Professors'}}
+{{=A(b, _class='btn', _href=URL('default', 'professors'))}}
+{{=A('Add a review', _class='btn', _href=URL('default', 'review', args=['professor'], vars=dict(l=request.vars.l, f=request.vars.f)))}}
+</p>
+	</div>
+</div>
+
+
+

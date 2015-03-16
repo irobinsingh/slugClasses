@@ -2,11 +2,11 @@
 
 <head>
 	<style>
-		.subjects {		font-size: 20px; text-decoration:none; font-weight:bolder; color:black;}
+		.subjects {			font-size: 20px; text-decoration:none; font-weight:bolder; color:black;}
 		.subjects:hover {	color: #3300FF}
-		.sbjcts { 	font-size:40px; text-align:center; padding-top:20px;}
-		.search {		padding-top: 15px; padding-bottom: 40px;}
-		.btn {			text-decoration: none; font-weight: bolder;x}
+		.sbjcts { 			font-size:40px; text-align:center; padding-top:20px;}
+		.search {			padding-top: 15px; padding-bottom: 40px;}
+		.btn {				text-decoration: none; font-weight: bolder;x}
 	</style>
 </head>
 
@@ -34,7 +34,7 @@
 						{{for r in results:}}
 							{{query = r.nbr + ': ' + r.title}}
 							<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> 
-								<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', args=[query])}}"> {{=query.upper()}} </a> 
+								<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', vars=dict(s=request.args(0), n=r.nbr))}}"> {{=query.upper()}} </a> 
 							</td> </tr>
 						{{pass}}
 					</table>

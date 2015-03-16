@@ -2,29 +2,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Slug Classes</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Slug Classes</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+	<link href="{{=URL('static', 'css/default.css')}}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{{=URL('static', 'fonts.css')}}" rel="stylesheet" type="text/css" media="all" />
+	<link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+	<link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+	
+	
+	<script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
 
-<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
-<link href="{{=URL('static', 'css/default.css')}}" rel="stylesheet" type="text/css" media="all" />
-<link href="{{=URL('static', 'fonts.css')}}" rel="stylesheet" type="text/css" media="all" />
-<link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
-<link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
-
-
-<script src="{{=URL('static','js/modernizr.custom.js')}}"></script>
-
-<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-  			
-
+	<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+ 
+	<style>
+		#insertedContent {	background-image: url("{{=URL('static', 'images/background.jpg')}}"); 
+							background-size: 100% 100%;}
+	</style>
 </head>
+
+
 <body>
 <div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<img style="-webkit-filter: invert(100%);" src="{{=URL('static', 'images/slug.png')}}" alt="slug" height="41" width="128">
+			<img class="slug" style="-webkit-filter: invert(100%);" src="{{=URL('static', 'images/slug.png')}}" alt="slug" height="41" width="128">
 			<h1><a href="{{=URL('default', 'index')}}">Slug Classes</a></h1>
 			<span>University of California, Santa Cruz</span>
 		</div>
@@ -33,20 +38,21 @@
 </div>
 <div id="menu-wrapper">
 		<div id="menu">
-			<ul>
-				<li class="current_page_item"><a href="{{=URL('default', 'index')}}" accesskey="1" title="">Home</a></li>
-				<li><a href="{{=URL('default', 'classes')}}" accesskey="2" title="">Classes</a></li>
-				<li><a href="{{=URL('default', 'professors')}}" accesskey="3" title="">Professors</a></li>
-				<li><a href="{{=URL('default', 'user/profile')}}" accesskey="4" title="">My Slug</a></li>
-				<li><a href="{{=URL('default', 'contact')}}" accesskey="7" title="">Contact Us</a></li>
+			<ul >
+				<li><a href="{{=URL('default', 'index')}}" class="toyellow">Home</a></li>
+				<li><a href="{{=URL('default', 'classes')}}" class="toyellow">Classes</a></li>
+				<li><a href="{{=URL('default', 'professors')}}" class="toyellow">Professors</a></li>
+				<li><a href="{{=URL('default', 'user/profile')}}" class="toyellow">My Slug</a></li>
+				<li><a href="{{=URL('default', 'contact')}}" class="toyellow">Contact Us</a></li>
 			</ul>
 		</div>
 </div>
-
-<div id="insertedContent">
-	{{block center}} 
-	{{include}} 
-	{{end}}
+<div id="white">
+	<div id="insertedContent">
+		{{block center}} 
+		{{include}} 
+		{{end}}
+	</div>
 </div>
 
 <div id="stamp" class="container">

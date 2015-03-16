@@ -20,19 +20,13 @@ db.define_table('course',
 db.define_table('revision',
                 Field('course_id', db.course),
                 Field('professor_id', db.professor),
-                Field('date_created', 'datetime', writable=False, default=datetime.utcnow()),
+                Field('author'),
+                Field('date_created', 'datetime',default=datetime.utcnow()),
+                Field('summary'),
                 Field('body', 'text'),
-                Field('thumbsups', 'integer', readable=False),
-                Field('thumbsdowns', 'integer', readable=False)
-                )
-
-db.define_table('note',
-                Field('course_id', db.course),
-                Field('date_created', 'datetime'),
-                Field('body', 'text'),
-                Field('thumbsups', 'integer', readable=False),
-                Field('thumbsdowns', 'integer', readable=False)
                 )
 
 db.course.subject.requires = IS_IN_DB(db, 'subject.id', '%(acronym)s: %(title)s')
-    
+db.revision.professor_id.requires = IS_IN_DB(db, 'professor.id', '%(last_name)s, %(first_name)s')
+db.revision.date_created.writable=False
+db.revision.date_created.readable=False

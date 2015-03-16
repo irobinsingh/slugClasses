@@ -28,7 +28,7 @@
 						<table style="margin-bottom: 5px; margin-left:60px">
 							{{for r in results:}}
 								<tr style="padding-top: 3px; padding-bottom:4px;"> <td align="left"> 
-									<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', args=[query])}}"> {{=query.upper()}} </a> 
+									<span class="icon icon-chevron-right"></span> <a class="subjects" href="{{=URL('default', 'course', vars=dict(s=request.vars.course, n=request.vars.number))}}"> {{=query.upper()}} </a> 
 								</td> </tr>
 							{{pass}}
 						</table>
