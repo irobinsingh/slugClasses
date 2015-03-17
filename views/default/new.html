@@ -15,8 +15,18 @@
 		<br />
 		<h1 class="professors"> Add a new Subject </h1>
 		<h2 style="text-align: center; font-size:16px;"> Please ensure that this subject isn't already in our database. </h2>
+		{{
+			message = ''
+			if request.vars.s == 'True':
+				message = 'Added Successfully!'
+			pass
+		}}
+			
 		<div class="search" align="center"> {{=subjectform}} </div>
+		<div align="center" class="success"> {{=message}} </div>
+		
 		<br />
+		
 		<h1 class="professors"> Add a new Course </h1>
 		<h2 style="text-align: center; font-size:16px;"> Please ensure that this course isn't already in our database. </h2>
 		<div class="search" align="center"> {{=courseform}} </div>	

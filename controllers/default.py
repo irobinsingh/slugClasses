@@ -87,7 +87,7 @@ def course():
         clss = db((db.course.nbr == request.vars.n) & (db.course.subject == subj.first()) ).select().first()
 
     if clss != '':
-        reviews = db(db.revision.course_id == clss.id).select(orderby=db.revision.date_created)
+        reviews = db(db.revision.course_id == clss.id).select(orderby=~db.revision.date_created)
     return dict(form=reviews)
 
 def professor():
@@ -97,7 +97,7 @@ def professor():
    
     reviews = []
     if prof != '':
-        reviews = db(db.revision.professor_id == prof.id).select(orderby=db.revision.date_created)
+        reviews = db(db.revision.professor_id == prof.id).select(orderby=~db.revision.date_created)
     return dict(form=reviews)
 
 
@@ -114,7 +114,7 @@ def subject():
             redirect(URL('default', 'classes', args=['search'], vars=dict(course=form.vars.subject, number=form.vars.number)))
     
     subj = db(db.subject.acronym.lower() == request.args(0).lower()).select().first()
-    results = db(db.course.subject == subj.id).select()
+    results = db(db.course.subject == subj.id).select(orderby=db.course.nbr)
     
     return dict(category=subj.title.title(), message=message, form=form, results=results)
 
@@ -130,9 +130,9 @@ def new():
     courseform = SQLFORM(db.course)
     subjectform = SQLFORM(db.subject)
     if courseform.process().accepted:
-        redirect(URL('default', 'new'))
+        redirect(URL('default', 'new', vars=dict(s=True)))
     if subjectform.process().accepted:
-        redirect(URL('default', 'new'))
+        redirect(URL('default', 'new', vars=dict(s=True)))
     return dict(courseform=courseform, subjectform=subjectform)
 
 
@@ -151,7 +151,7 @@ def newprofessor():
     form = SQLFORM(db.professor)
     if form.process().accepted:
         nam = form.vars.first_name + ' ' + form.vars.last_name
-        redirect(URL('default', 'professor', args=[nam]))
+        redirect(URL('default', 'professor', vars=dict(f=form.vars.first_name, l=form.vars.last_name)))
     return dict(form=form)
 
 def user():

@@ -1459,3 +1459,69 @@ input[type='submit'].active, input[type='submit']:active
         transform: translateX(0);
     }
 }
+
+.success
+{
+	text-align: center;
+    color: white;
+    background: rgba(0,128,0,.9);
+    width: 100%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:8px;
+    margin-bottom:3px;
+    	
+    animation-name: slide;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-duration: 1s;
+
+    -webkit-animation-name: slide;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-duration: 1s;
+
+    animation-name: slide;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+    animation-duration: 1s;
+}
+
+@-moz-keyframes slide {
+    0% {
+    	width: 0%;
+    	background:rgba(0,0,0,0);
+    	color:green;
+    }
+    100% {
+    	width:100%;
+        background: green;
+        color:white;
+    }
+}
+
+@-webkit-keyframes slide {
+    0% {
+    	width:0%;
+    	background:rgba(0,0,0,0);
+    	color:green;
+    }
+    100% {
+    	width:100%;
+        background: green;
+        color:white;
+    }
+}
+
+@keyframes slide {
+    0% {
+    	width:0px;
+   		background:rgba(0,0,0,0);
+   		color:green;
+    }
+    100% {
+    	width:100%;
+        background: green;
+        color:white;
+    }
+}
